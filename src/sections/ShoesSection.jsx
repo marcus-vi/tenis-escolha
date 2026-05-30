@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import toast from "react-hot-toast";
+const WEBHOOK = import.meta.env.VITE_DISCORD_WEBHOOK;
 
 const shoes = [
     {
@@ -54,7 +55,7 @@ export default function ShoesSection() {
 
         try {
 
-            await fetch("https://discord.com/api/webhooks/1509246621798633542/rweMY2r5MwXSwtiTtb1SFAvI84t66m7f89kIZB_UCeeJCbsk5Wp9VmxNyKvhlnEjOHfp", {
+            await fetch(WEBHOOK, {
                 method: "POST",
 
                 headers: {
