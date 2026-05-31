@@ -18,13 +18,13 @@ const shoes = [
 
     {
         id: 2,
-        name: "Adidas Response Runner 2",
+        name: "Olympikus Acqua Esportivo",
         images: [
-            "https://static.clube.netshoes.com.br/produtos/tenis-adidas-response-runner-2/88/FBA-83CJ-288/FBA-83CJ-288_zoom1.jpg?ts=1779986629&ims=1088x",
-            "https://static.clube.netshoes.com.br/produtos/tenis-adidas-response-runner-2/88/FBA-83CJ-288/FBA-83CJ-288_zoom2.jpg?ts=1779986629&ims=1088x",
-            "https://static.clube.netshoes.com.br/produtos/tenis-adidas-response-runner-2/88/FBA-83CJ-288/FBA-83CJ-288_zoom3.jpg?ts=1779986629&ims=1088x",
-            "https://static.clube.netshoes.com.br/produtos/tenis-adidas-response-runner-2/88/FBA-83CJ-288/FBA-83CJ-288_zoom4.jpg?ts=1779986629&ims=1088x",
-            "https://static.clube.netshoes.com.br/produtos/tenis-adidas-response-runner-2/88/FBA-83CJ-288/FBA-83CJ-288_zoom5.jpg?ts=1779986629&ims=1088x",
+            "https://http2.mlstatic.com/D_NQ_NP_655598-MLB87630393371_072025-O-tenis-olympikus-acqua-esportivo-feminino-original.webp",
+            "https://http2.mlstatic.com/D_NQ_NP_680785-MLB87630393381_072025-O-tenis-olympikus-acqua-esportivo-feminino-original.webp",
+            "https://http2.mlstatic.com/D_NQ_NP_855791-MLB87630393349_072025-O-tenis-olympikus-acqua-esportivo-feminino-original.webp",
+            "https://http2.mlstatic.com/D_NQ_NP_633560-MLB87630393365_072025-O-tenis-olympikus-acqua-esportivo-feminino-original.webp",
+            "https://http2.mlstatic.com/D_NQ_NP_930274-MLB87630393375_072025-O-tenis-olympikus-acqua-esportivo-feminino-original.webp",
         ],
     },
 
@@ -39,6 +39,42 @@ const shoes = [
             "https://static.netshoes.com.br/produtos/tenis-fila-inclusion-feminino/96/SFK-0176-196/SFK-0176-196_zoom5.jpg?ts=1779983173&ims=1088x",
         ],
     },
+
+    {
+        id: 4,
+        name: "Under Armour Charged Wing 2",
+        images: [
+            "https://http2.mlstatic.com/D_NQ_NP_913442-MLB95235332943_102025-O-tnis-feminino-under-armour-charged-wing-2-oferta-esportivo.webp",
+            "https://http2.mlstatic.com/D_NQ_NP_700803-MLB95235572631_102025-O-tnis-feminino-under-armour-charged-wing-2-oferta-esportivo.webp",
+            "https://http2.mlstatic.com/D_NQ_NP_654135-MLB94802489192_102025-O-tnis-feminino-under-armour-charged-wing-2-oferta-esportivo.webp",
+            "https://http2.mlstatic.com/D_NQ_NP_820404-MLB94802885304_102025-O-tnis-feminino-under-armour-charged-wing-2-oferta-esportivo.webp",
+            "https://http2.mlstatic.com/D_NQ_NP_985859-MLB95235313927_102025-O-tnis-feminino-under-armour-charged-wing-2-oferta-esportivo.webp",
+        ],
+    },
+
+    {
+        id: 5,
+        name: "Fila Progress",
+        images: [
+            "https://http2.mlstatic.com/D_NQ_NP_967623-MLB108377297690_032026-O-tnis-fila-progress-feminino-academiacaminhada-leve-macio.webp",
+            "https://http2.mlstatic.com/D_NQ_NP_683200-MLB108376258454_032026-O-tnis-fila-progress-feminino-academiacaminhada-leve-macio.webp",
+            "https://http2.mlstatic.com/D_NQ_NP_866209-MLB88350982106_072025-O-tnis-fila-progress-feminino-academiacaminhada-leve-macio.webp",
+            "https://http2.mlstatic.com/D_NQ_NP_878632-MLB109170997293_032026-O-tnis-fila-progress-feminino-academiacaminhada-leve-macio.webp",
+            "https://http2.mlstatic.com/D_NQ_NP_838616-MLB109170374847_032026-O-tnis-fila-progress-feminino-academiacaminhada-leve-macio.webp",
+        ],
+    },
+
+    {
+        id: 6,
+        name: "Fila Racer Comet",
+        images: [
+            "https://http2.mlstatic.com/D_NQ_NP_809313-MLB110410704256_052026-O-tenis-fila-racer-comet-feminino-casual-e-caminhada-corrida.webp",
+            "https://http2.mlstatic.com/D_NQ_NP_710100-MLB111348179183_052026-O-tenis-fila-racer-comet-feminino-casual-e-caminhada-corrida.webp",
+            "https://http2.mlstatic.com/D_NQ_NP_759177-MLB110411325874_052026-O-tenis-fila-racer-comet-feminino-casual-e-caminhada-corrida.webp",
+            "https://http2.mlstatic.com/D_NQ_NP_634084-MLB110410763874_052026-O-tenis-fila-racer-comet-feminino-casual-e-caminhada-corrida.webp",
+            "https://http2.mlstatic.com/D_NQ_NP_665083-MLB111348268995_052026-O-tenis-fila-racer-comet-feminino-casual-e-caminhada-corrida.webp",
+        ],
+    }
 ];
 
 export default function ShoesSection() {
