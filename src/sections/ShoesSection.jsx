@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import toast from "react-hot-toast";
 const WEBHOOK = import.meta.env.VITE_DISCORD_WEBHOOK;
+import { createPortal } from "react-dom";
 
 const shoes = [
     {
@@ -135,13 +136,13 @@ export default function ShoesSection() {
     }
 
     return (
-        <section className="relative flex w-screen min-h-screen snap-start items-center justify-center overflow-hidden bg-[#050505] px-6 py-20">
+        <section className="relative h-screen w-screen overflow-y-auto bg-[#050505] px-6 py-20">
 
             {/* glow */}
 
             <div className="absolute h-[600px] w-[600px] rounded-full bg-pink-500/10 blur-[160px]" />
 
-            <div className="relative z-10 w-full mx-46">
+            <div className="relative z-10 mx-auto w-full max-w-7xl">
 
                 {/* título */}
 
@@ -164,7 +165,7 @@ export default function ShoesSection() {
 
                 {/* cards */}
 
-                <div className="grid gap-16 md:grid-cols-3">
+                <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
 
                     {shoes.map((shoe, index) => {
 
@@ -189,8 +190,8 @@ export default function ShoesSection() {
                                     setShowModal(true);
                                 }}
                                 className={`group relative cursor-pointer overflow-hidden rounded-3xl border transition-all duration-100 ${active
-                                        ? "border-pink-400 bg-white/10"
-                                        : "border-white/10 bg-white/5"
+                                    ? "border-pink-400 bg-white/10"
+                                    : "border-white/10 bg-white/5"
                                     } backdrop-blur-xl`}
                             >
 
@@ -234,159 +235,158 @@ export default function ShoesSection() {
 
             {/* modal */}
 
-            {showModal && (
-
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-6 backdrop-blur-md"
-                >
-
+            {showModal &&
+                createPortal(
                     <motion.div
-                        initial={{ scale: 0.8, opacity: 0, y: 40 }}
-                        animate={{ scale: 1, opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4 }}
-                        className="w-full mx-28 overflow-hidden rounded-3xl border border-white/10 bg-[#111] shadow-[0_20px_80px_rgba(0,0,0,0.5)]"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-md"
                     >
 
-                        <div className="grid md:grid-cols-2">
+                        <motion.div
+                            initial={{ scale: 0.8, opacity: 0, y: 40 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4 }}
+                            className="w-[95vw] max-w-6xl overflow-hidden rounded-3xl border border-white/10 bg-[#111] shadow-[0_20px_80px_rgba(0,0,0,0.5)]"
+                        >
 
-                            {/* imagem */}
+                            <div className="grid md:grid-cols-2">
 
-                            <div className="relative h-[300px] overflow-hidden md:min-h-[60vh]">
+                                {/* imagem */}
 
-                                <motion.img
-                                    key={currentImage}
-                                    initial={{ opacity: 0.4, scale: 1.05 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    transition={{ duration: 0.4 }}
-                                    src={
-                                        shoes.find((shoe) => shoe.id === selected)
-                                            ?.images[currentImage]
-                                    }
-                                    alt={
-                                        shoes.find((shoe) => shoe.id === selected)?.name
-                                    }
-                                    className="h-full w-full object-cover"
-                                />
+                                <div className="relative h-[300px] overflow-hidden md:min-h-[60vh]">
 
-                                {/* overlay */}
-
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-
-                                {/* esquerda */}
-
-                                <button
-                                    onClick={() => {
-
-                                        const shoe = shoes.find(
-                                            (shoe) => shoe.id === selected
-                                        );
-
-                                        setCurrentImage((prev) =>
-                                            prev === 0
-                                                ? shoe.images.length - 1
-                                                : prev - 1
-                                        );
-                                    }}
-                                    className="absolute left-4 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/40 p-3 backdrop-blur-xl transition hover:scale-110"
-                                >
-                                    ←
-                                </button>
-
-                                {/* direita */}
-
-                                <button
-                                    onClick={() => {
-
-                                        const shoe = shoes.find(
-                                            (shoe) => shoe.id === selected
-                                        );
-
-                                        setCurrentImage((prev) =>
-                                            prev === shoe.images.length - 1
-                                                ? 0
-                                                : prev + 1
-                                        );
-                                    }}
-                                    className="absolute right-4 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/40 p-3 backdrop-blur-xl transition hover:scale-110"
-                                >
-                                    →
-                                </button>
-
-                                {/* indicadores */}
-
-                                <div className="absolute bottom-5 left-1/2 flex -translate-x-1/2 gap-2">
-
-                                    {shoes
-                                        .find((shoe) => shoe.id === selected)
-                                        ?.images.map((_, index) => (
-
-                                            <div
-                                                key={index}
-                                                className={`h-2 rounded-full transition-all ${currentImage === index
-                                                        ? "w-8 bg-white"
-                                                        : "w-2 bg-white/40"
-                                                    }`}
-                                            />
-
-                                        ))}
-
-                                </div>
-
-                            </div>
-
-                            {/* conteúdo */}
-
-                            <div className="flex flex-col justify-between p-8">
-
-                                <div>
-
-                                    <p className="text-sm uppercase tracking-[0.3em] text-pink-400">
-                                        Presente escolhido
-                                    </p>
-
-                                    <h3 className="mt-4 text-4xl font-bold leading-tight">
-                                        {
+                                    <motion.img
+                                        key={currentImage}
+                                        initial={{ opacity: 0.4, scale: 1.05 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        transition={{ duration: 0.4 }}
+                                        src={
+                                            shoes.find((shoe) => shoe.id === selected)
+                                                ?.images[currentImage]
+                                        }
+                                        alt={
                                             shoes.find((shoe) => shoe.id === selected)?.name
                                         }
-                                    </h3>
+                                        className="h-full w-full object-cover"
+                                    />
 
-                                    <p className="mt-6 text-gray-400">
-                                        Tem certeza que deseja confirmar essa escolha?
-                                    </p>
+                                    {/* overlay */}
+
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+
+                                    {/* esquerda */}
+
+                                    <button
+                                        onClick={() => {
+
+                                            const shoe = shoes.find(
+                                                (shoe) => shoe.id === selected
+                                            );
+
+                                            setCurrentImage((prev) =>
+                                                prev === 0
+                                                    ? shoe.images.length - 1
+                                                    : prev - 1
+                                            );
+                                        }}
+                                        className="absolute left-4 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/40 p-3 backdrop-blur-xl transition hover:scale-110"
+                                    >
+                                        ←
+                                    </button>
+
+                                    {/* direita */}
+
+                                    <button
+                                        onClick={() => {
+
+                                            const shoe = shoes.find(
+                                                (shoe) => shoe.id === selected
+                                            );
+
+                                            setCurrentImage((prev) =>
+                                                prev === shoe.images.length - 1
+                                                    ? 0
+                                                    : prev + 1
+                                            );
+                                        }}
+                                        className="absolute right-4 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/40 p-3 backdrop-blur-xl transition hover:scale-110"
+                                    >
+                                        →
+                                    </button>
+
+                                    {/* indicadores */}
+
+                                    <div className="absolute bottom-5 left-1/2 flex -translate-x-1/2 gap-2">
+
+                                        {shoes
+                                            .find((shoe) => shoe.id === selected)
+                                            ?.images.map((_, index) => (
+
+                                                <div
+                                                    key={index}
+                                                    className={`h-2 rounded-full transition-all ${currentImage === index
+                                                        ? "w-8 bg-white"
+                                                        : "w-2 bg-white/40"
+                                                        }`}
+                                                />
+
+                                            ))}
+
+                                    </div>
 
                                 </div>
 
-                                {/* botões */}
+                                {/* conteúdo */}
 
-                                <div className="mt-10 flex gap-4">
+                                <div className="flex flex-col justify-between p-8">
 
-                                    <button
-                                        onClick={() => setShowModal(false)}
-                                        className="flex-1 rounded-2xl border border-white/10 bg-white/5 py-4 transition hover:bg-white/10 cursor-pointer"
-                                    >
-                                        Cancelar
-                                    </button>
+                                    <div>
 
-                                    <button
-                                        onClick={sendWebhook}
-                                        className="flex-1 rounded-2xl bg-pink-500 py-4 font-semibold transition hover:scale-105 hover:bg-pink-400 cursor-pointer"
-                                    >
-                                        Confirmar
-                                    </button>
+                                        <p className="text-sm uppercase tracking-[0.3em] text-pink-400">
+                                            Presente escolhido
+                                        </p>
+
+                                        <h3 className="mt-4 text-4xl font-bold leading-tight">
+                                            {
+                                                shoes.find((shoe) => shoe.id === selected)?.name
+                                            }
+                                        </h3>
+
+                                        <p className="mt-6 text-gray-400">
+                                            Tem certeza que deseja confirmar essa escolha?
+                                        </p>
+
+                                    </div>
+
+                                    {/* botões */}
+
+                                    <div className="mt-10 flex gap-4">
+
+                                        <button
+                                            onClick={() => setShowModal(false)}
+                                            className="flex-1 rounded-2xl border border-white/10 bg-white/5 py-4 transition hover:bg-white/10 cursor-pointer"
+                                        >
+                                            Cancelar
+                                        </button>
+
+                                        <button
+                                            onClick={sendWebhook}
+                                            className="flex-1 rounded-2xl bg-pink-500 py-4 font-semibold transition hover:scale-105 hover:bg-pink-400 cursor-pointer"
+                                        >
+                                            Confirmar
+                                        </button>
+
+                                    </div>
 
                                 </div>
 
                             </div>
 
-                        </div>
+                        </motion.div>
 
                     </motion.div>
-
-                </motion.div>
-
-            )}
+                , document.body)}
 
         </section>
     );
